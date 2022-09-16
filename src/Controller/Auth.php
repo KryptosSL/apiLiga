@@ -5,14 +5,14 @@ class Auth{
 
     public function validaSessao(){
     
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         if(!isset($_SESSION['token']) || is_null($_SESSION['token'])) {
             exit( json_encode( array('error' => true ,
                                      'mensage' => "sessão não iniciada") ));
         }else{
             $this->validaTempoToken($_SESSION['token'][1]);
-            exit( json_encode( array('error' => false ,
-                                     'mensage' => "sessão iniciada") ));
         }  
     }
 

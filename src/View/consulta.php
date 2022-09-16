@@ -60,12 +60,12 @@
               url: "/validaSessao",
               dataType: "json"
             }).done(function(data) {
+                console.log(data);
                 if(data.error){
                    $("#myModal").css("display","block");
                 }
-            }).fail(function(e){
-                console.log(e);
             });
+            
             $("#containerTable").hide();
             $("#validar").click(function(e){
 
@@ -107,10 +107,11 @@
                         data : {nome :campo},
                         dataType: "json"
                     }).done(function(data){
+                        console.log(data);
                           $("#produtos td").remove();
                           if(!data.error){
                               let dados = data.dados;
-                              if(dados.length <1 ){
+                              if(dados.length < 1 ){
                                 alert("Produto não encontrado!"); 
                                 return 0;
                               } 
